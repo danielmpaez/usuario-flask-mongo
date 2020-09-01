@@ -1,34 +1,49 @@
 from flask import Flask,jsonify, render_template,request,redirect,url_for # For flask implementation    
-from bson import ObjectId   
 from pymongo import MongoClient    
-import os    
+import os  
+import json  
+from bson import json_util, ObjectId 
     
 app = Flask(__name__)       
  
-MONGO_Host = 'mongodb://3.tcp.ngrok.io/'  #host
-MONGO_PORT = 23370  #port
-MONGO_DB = 'scpipeline' #select database'
-MONGO_USER = 'carlitos'  #username
-MONGO_PASS = 'bala'    #password
+Mongoclient = 'mongodb://ababab:xzxzxz@3.tcp.ngrok.io:23370/scpipeline?authSource=admin'  #host
+#MONGO_PORT = 23370  #port
+#MONGO_DB = 'scpipeline' #select database'
+#MONGO_USER = 'ababab'  #username
+#MONGO_PASS = 'xzxzxz'    #password
 
 
 #conection
-con = MongoClient(MONGO_Host, MONGO_PORT)
-db = con[MONGO_DB]
-db.authenticate(MONGO_USER, MONGO_PASS)
+client = MongoClient(os.getenv("MONGO_URI"))
+db = client['users']
+
 
 print(db)   
 #collection
-new_replays = db.new_replays #Select the collection name     
-print(new_replays)
+players = db.new_replays #Select the collection name     
+print(players)
 
+
+cursor = client.list_databases()
+for db in cursor:
+    print(db)
 
 #route   
 @app.route("/list")    
+def get_replays():
+   
+    response = jsonify(players)
+    return Response(response)
+
+    print(response)
+
+
+
+
+
+
+
     
-#players= db.new_players
-def players():
-    return  jsonify(new_players) 
   
 
   
