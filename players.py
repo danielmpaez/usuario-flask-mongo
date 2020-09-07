@@ -6,7 +6,7 @@ import bson
 import jsonify
 import json
 
-Mongoclient= 'mongodb://starcraft:testing@3.tcp.ngrok.io:23370/scpipeline?authSource=admin'  #host
+Mongoclient= 'mongodb://starzzz:xxxxx@3.tcp.ngrok.io:23370/scpipeline?authSource=admin'  #host
 client = MongoClient(os.getenv("MONGO_URI"))
 db = client['scpipeline']
 
