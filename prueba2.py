@@ -6,7 +6,7 @@ import bson
 import jsonify
 import json
 
-Mongoclient= 'mongodb://starcraft:testing@3.tcp.ngrok.io:23370/scpipeline?authSource=admin'  #host
+
 client = MongoClient(os.getenv("Mongoclient"))
 db = client['scpipeline']
 
@@ -25,13 +25,13 @@ def cast_index():
 
 ret = list(db.new_replays.find({}))
 print(ret)
-
+# aca me devuelve bien el primer documento
 @app.route('/list2', methods=['GET'])
 def cast_index2():
   ret = list(db.new_replays.find_one())
   json_data = json.dumps(ret)
   return json_data
-
+#aca intente desde uno de las claves /valor me devuelva un documento, no lo consegui, la idea era me devuelva el segundo
 @app.route('/list3', methods=['GET'])
 def cast_index3():
     
