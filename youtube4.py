@@ -26,13 +26,13 @@ print(data)
 
 r = requests.get("https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&channelId=UCZ7wN9kEDmRFhQ7MAotRIAQ&order=date&key={}".format(YOUTUBE_API_KEY))
 json_data = r.json()                                                                                                
-nextPageToken = json_data.get("CAoQAA")
+nextPageToken = json_data.get("nextPageToken")
 print(json_data)
 # Devuelve el resto de las paginas en un bucle
 while nextPageToken:
     r = requests.get("https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=50&channelId=UCZ7wN9kEDmRFhQ7MAotRIAQ&order=date&key={}&pageToken=CAoQAA".format(YOUTUBE_API_KEY))
     json_data = r.json()
-    nextPageToken = json_data.get("CAoQAA")
+    nextPageToken = json_data.get("nextPageToken")
 print(json_data)
 
 
